@@ -98,7 +98,7 @@ class Distractinator:
 
             containing_dir = os.path.split(path_to_custom_events)[0]
             sys.path.append(containing_dir) 
-            return importlib.import_module('notifieractions')
+            return importlib.import_module('customevents')
         return False
 
     def identify_board(self, p):
