@@ -17,6 +17,7 @@ You will need one in order to customize events.
 
 ### Specifying a logfile: ###
 By default, the log messages will print to stdout. You can specify a logfile location with the --log argument.
+
 `notify --log /path/to/notifier.log`
 
 This is especially helpful when running as a background process, or under the supervision of a separate process.
