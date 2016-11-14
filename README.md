@@ -33,6 +33,7 @@ Run it under Supervisord
 `pip install supervisor`
 
 Example stanza for supervisord.conf:
+
     [program:notifier]
     command=/usr/local/bin/notify
     autostart=True
