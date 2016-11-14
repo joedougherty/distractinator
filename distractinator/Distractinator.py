@@ -40,6 +40,7 @@ class Distractinator:
 
         # Find and assign the correct port!
         self.p = self.autoconnect() # Won't you join me on the perennial quest?
+        on_connect(usermodule=self.usermodule, log=self.log)
 
     def createlogger(self, logfile_location=None):
         logger = logging.getLogger()
