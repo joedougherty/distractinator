@@ -147,9 +147,9 @@ class Distractinator:
 
             rc = alert(title, msg)
             if rc == 0:
-                self.log.info('/usr/bin/notify received return code 0')
+                self.log.info('/usr/bin/notify-send received return code 0')
             else:
-                self.log.error('/usr/bin/notify received return code {}'.format(rc))
+                self.log.error('/usr/bin/notify-send received return code {}'.format(rc))
 
     def run(self, port=None):
         if port is None:
