@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import serial, serial.tools.list_ports
-import subprocess
 import logging
 import time
 import importlib
@@ -13,10 +12,6 @@ except:
     # Python 3  
     import configparser
 from events import *
-
-def alert(title, msg):
-    rc = subprocess.call(["/usr/bin/notify-send", title, msg])
-    return rc
 
 class Distractinator:
     def __init__(self):
@@ -142,8 +137,13 @@ class Distractinator:
         if self.use_default_alert():
             if self.get_alert_title() is None:
                 title = "Pay Attention!"
+            else:
+                title = str(self.get_alert_title())
+
             if self.get_alert_msg() is None:
                 msg = "Someone wants to speak with you."
+            else:
+                msg = str(self.get_alert_msg())
 
             rc = alert(title, msg)
             if rc == 0:

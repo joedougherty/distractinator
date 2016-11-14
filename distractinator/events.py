@@ -1,3 +1,9 @@
+import subprocess
+
+def alert(title, msg):
+    rc = subprocess.call(["/usr/bin/notify-send", title, msg])
+    return rc
+
 def run_action_a(usermodule=None, log=None):
     if not usermodule: 
         return

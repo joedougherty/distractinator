@@ -12,7 +12,7 @@ setup(
         packages=['distractinator'],
         install_requires=['pyserial>=3.1.1'],
         entry_points={
-            'console_scripts': ['notify = distractinator'],
+            'console_scripts': ['notify = distractinator:main'],
             }
         )
 
