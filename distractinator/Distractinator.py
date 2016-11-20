@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import serial, serial.tools.list_ports
 import logging
 import time
@@ -6,12 +5,15 @@ import importlib
 import os
 import sys
 import argparse
+import pkg_resources
+import shutil
 try:
     import ConfigParser as configparser
 except:
     # Python 3  
     import configparser
 from events import *
+from hardware import get_hardware_id
 
 class Distractinator:
     def __init__(self):
@@ -19,6 +21,7 @@ class Distractinator:
         desc = "The Distractinator(TM) notifier!"
         parser = argparse.ArgumentParser(description=desc)
         parser.add_argument('--log', help='Absolute path to the desired log. (/path/to/file.log)', type=str, required=False)
+        parser.add_argument('--config', help='Setup your config file.', action="store_true", default=False)
         args = parser.parse_args()
 
         # Set up logging!
@@ -26,8 +29,11 @@ class Distractinator:
         self.log.info('notifier started.')
 
         # Find and parse the config file!
-        self.config = self.config_file(print_err_msg=True)
-        self.default_alert = self.use_default_alert()
+        if args.config:
+            self.setup_config_file()
+        else:
+            self.config = self.config_file(print_err_msg=True)
+            self.default_alert = self.use_default_alert()
         
         # Find and import the custom actions file!
         try:
@@ -61,7 +67,7 @@ class Distractinator:
         if not os.path.exists(config_location):
             if print_err_msg:
                 self.log.info('No config file found at {}.'.format(config_location))
-            return None
+            self.setup_config_file()
 
         try:
             cfg = configparser.ConfigParser()
@@ -70,7 +76,20 @@ class Distractinator:
         except:
             self.log.error('Config file at {} could not be read.'.format(config_location))
             sys.exit(2)
+
+    def setup_config_file(self):
+        """ Copy the sample configuration file (from samples/) into the correct destination. """
+        config_file = pkg_resources.resource_filename(__name__, 'examples/.distractinator.conf')
+        desired_location = os.path.join(os.path.expanduser('~'), '.distractinator.conf')
+
+        self.log.info('Copying the sample config file from {} to {}...'.format(config_file, desired_location))
+        shutil.copy(config_file, desired_location)
+
+        hwid = get_hardware_id()
     
+        # Write the hwid to the config file
+        self.config_file().set('notifier', 'device_id', value=hwid)
+
     def use_default_alert(self):
         """ 
         Use the default alert unless the user specifies otherwise
