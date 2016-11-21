@@ -5,7 +5,7 @@ from six.moves import input
 explanation = """\nLet's make sure we can correctly identify your Distractinator(TM) hardware!
 
     1.) Plug in the Distractinator(TM), please.
-    2.) Unplug any unnecessary USB peripherals (optional).
+    2.) Temporarily unplug any unnecessary USB peripherals (optional).
     3.) Read the list of devices. Assuming you don't have any other microcontrollers or devices
         needing a communication port, there should be only one obvious choice.
     4.) Select the correct device.
