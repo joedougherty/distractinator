@@ -13,7 +13,7 @@ except:
     # Python 3  
     import configparser
 from events import *
-from hardware import get_hardware_id
+from hardware import get_hardware_id, sanitize_hwid
 
 class Distractinator:
     def __init__(self):
@@ -79,7 +79,7 @@ class Distractinator:
 
     def setup_config_file(self):
         """ Copy the sample configuration file (from samples/) into the correct destination. """
-        config_file = pkg_resources.resource_filename(__name__, 'examples/.distractinator.conf')
+        config_file = pkg_resources.resource_filename(__name__, '../examples/.distractinator.conf')
         desired_location = os.path.join(os.path.expanduser('~'), '.distractinator.conf')
 
         self.log.info('Copying the sample config file from {} to {}...'.format(config_file, desired_location))
@@ -88,7 +88,11 @@ class Distractinator:
         hwid = get_hardware_id()
     
         # Write the hwid to the config file
-        self.config_file().set('notifier', 'device_id', value=hwid)
+        config = configparser.ConfigParser()
+        config.add_section('hardware')
+        config.set('hardware', 'device_id', value=hwid)
+        with open(desired_location, 'a') as configfile:
+            config.write(configfile)
 
     def use_default_alert(self):
         """ 
@@ -122,7 +126,8 @@ class Distractinator:
         return False
 
     def identify_board(self, p):
-        if p.description == 'Adafruit' and p.manufacturer == 'Flora':
+        config_hwid = self.config_file().get('hardware', 'device_id')
+        if sanitize_hwid(p.hwid) == config_hwid:
             return True
         return False
 
