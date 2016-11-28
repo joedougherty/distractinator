@@ -12,8 +12,8 @@ try:
 except:
     # Python 3  
     import configparser
-from events import *
-from hardware import get_hardware_id, sanitize_hwid
+from .events import *
+from .hardware import get_hardware_id, sanitize_hwid
 
 class Distractinator:
     def __init__(self):
@@ -78,8 +78,8 @@ class Distractinator:
             sys.exit(2)
 
     def setup_config_file(self):
-        """ Copy the sample configuration file (from samples/) into the correct destination. """
-        config_file = pkg_resources.resource_filename(__name__, '../examples/.distractinator.conf')
+        """ Copy the sample configuration file (from examples/) into the user's home directory. """
+        config_file = pkg_resources.resource_filename(__name__, 'examples/.distractinator.conf')
         desired_location = os.path.join(os.path.expanduser('~'), '.distractinator.conf')
 
         self.log.info('Copying the sample config file from {} to {}...'.format(config_file, desired_location))
@@ -106,7 +106,6 @@ class Distractinator:
 
     def customcode(self):
         if self.config_file(print_err_msg=False):
-
             try:
                 path_to_custom_events = self.config_file().get('notifier', 'custom_script')
                 self.log.info('Looking for custom script file at {}...'.format(path_to_custom_events))

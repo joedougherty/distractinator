@@ -1,4 +1,4 @@
-from Distractinator import Distractinator
+from .Distractinator import Distractinator
 
 def main():
     d = Distractinator()
