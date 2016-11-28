@@ -47,7 +47,8 @@ customevents.py
 ---------------
 You should use one!
 
-This repository comes with an example **customevents.py** file. Find its path on your system with `distractd --example_custom_code`.
+This repository comes with an example **customevents.py** file. Find its path on your system with: 
+    distractd --example_custom_code
 
 Copy that file to your desired location, uncomment the `custom_script` variable in your config file and point it to your customevents.py file. 
 
