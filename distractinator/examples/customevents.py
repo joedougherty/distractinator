@@ -25,5 +25,5 @@ def on_connect():
     alert(title="yay!", msg="USB Connected! :)")
 
 def on_disconnect():
-    alert(title="boo...", msg="USB Disconnected! :)")
+    alert(title="boo...", msg="USB Disconnected! :(")
 
