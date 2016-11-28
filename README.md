@@ -7,10 +7,10 @@
 
 
 ## SETUP ##
-    
-Run `distractd`
 
-A sample config file will be copied to your home directory. 
+`distractd`
+
+You will be walked through a few steps to ensure the script can communicate with your receiver. The setup process will also copy an example config file to your home directory.
 
 ### Specifying a logfile: ###
 By default, the log messages will print to stdout. You can specify a logfile location with the --log argument.
@@ -22,11 +22,11 @@ This is especially helpful when running as a background process, or under the su
 ## HOW TO RUN ##
 `distractd` works best when it runs any time your machine is on. Here are two strategies for running it without too much hassle on Ubuntu.
     
-Add an entry to Startup Applications:
+**Add an entry to Startup Applications:**
 
 `/usr/local/bin/distractd --log /path/to/distractd.log`
 
-Run it under Supervisord
+**Run it under Supervisord:**
 
 `pip install supervisor`
 
