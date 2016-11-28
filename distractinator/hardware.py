@@ -38,7 +38,7 @@ def prompt_for_port(explain=True):
     if explain:
         sys.stdout.write(explanation)
         # Explain, then confirm
-        input('Press any key to continue!')
+        input('Press enter to continue!')
 
     all_known_ports = _known_ports() 
     port_id = None
