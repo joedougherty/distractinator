@@ -1,10 +1,6 @@
 # DISTRACTINATOR: The customizable, open source cubicle doorbell #
 
 ## Installation ##
-    pip install distractinator
-
-OR
-
     git clone <this repo>
     cd distractinator
     python setup.py install
@@ -12,16 +8,14 @@ OR
 
 ## SETUP ##
     
-Call `distractd`
+Run `distractd`
 
 A sample config file will be copied to your home directory. 
-
-You will need one in order to customize events.
 
 ### Specifying a logfile: ###
 By default, the log messages will print to stdout. You can specify a logfile location with the --log argument.
 
-`notify --log /path/to/distractd.log`
+`distractd --log /path/to/distractd.log`
 
 This is especially helpful when running as a background process, or under the supervision of a separate process.
 
@@ -38,7 +32,7 @@ Run it under Supervisord
 
 Example stanza for supervisord.conf:
 
-    [program:notifier]
+    [program:distractd]
     command=/usr/local/bin/distractd
     autostart=True
     autorestart=unexpected
@@ -53,7 +47,11 @@ customevents.py
 ---------------
 You should use one!
 
-Set the `custom_script` variable in your config file.
+This repository comes with an example **customevents.py** file. Find its path on your system with `distractd --example_custom_code`.
+
+Copy that file to your desired location, uncomment the `custom_script` variable in your config file and point it to your customevents.py file. 
 
 Make sure it's the full, absolute path to your customevents.py file.
+
+You will need to restart `distractd` to pick up changes to customevents.py.
 

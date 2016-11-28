@@ -22,7 +22,15 @@ class Distractinator:
         parser = argparse.ArgumentParser(description=desc)
         parser.add_argument('--log', help='Absolute path to the desired log. (/path/to/file.log)', type=str, required=False)
         parser.add_argument('--config', help='Setup your config file.', action="store_true", default=False)
+        parser.add_argument('--example_custom_code', 
+                            help='Prints the location of the example customevents.py file.', 
+                            action="store_true",
+                            default=False)
         args = parser.parse_args()
+
+        if args.example_custom_code:
+            self.example_custom_code()
+            sys.exit(0)
 
         # Set up logging!
         self.log = self.createlogger(args.log)
@@ -63,6 +71,11 @@ class Distractinator:
         return logger
 
     def config_file(self, print_err_msg=False):
+        """ Look for config file in home directory.
+            If found, return configparser object.
+            If found but no parseable, exit with code 2.
+            If not found, note this in the log and run setup_config_file.
+        """
         config_location = os.path.join(os.path.expanduser('~'), '.distractinator.conf')
         if not os.path.exists(config_location):
             if print_err_msg:
@@ -104,7 +117,12 @@ class Distractinator:
         except:
             return True
 
+    def example_custom_code(self):
+        custom_events_file = pkg_resources.resource_filename(__name__, 'examples/customevents.py')
+        sys.stdout.write('Custom Events example file: {}\n'.format(custom_events_file))
+
     def customcode(self):
+        """ Import customevents.py using location specified in config file. """
         if self.config_file(print_err_msg=False):
             try:
                 path_to_custom_events = self.config_file().get('notifier', 'custom_script')
