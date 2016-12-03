@@ -52,9 +52,9 @@ This repository comes with an example **customevents.py** file. Find its path on
 
     distractd --example_custom_code
 
-Copy that file to your desired location, uncomment the `custom_script` variable in your config file and point it to your customevents.py file. 
-
-Make sure it's the full, absolute path to your customevents.py file.
+* Copy that file to your desired location
+* Uncomment the `custom_script` variable in your config file
+* Point it to the absolute path of your customevents.py file
 
 You will need to restart `distractd` to pick up changes to customevents.py.
 
