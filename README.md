@@ -23,11 +23,11 @@ This is especially helpful when running as a background process, or under the su
 ## HOW TO RUN ##
 `distractd` works best when it runs any time your machine is on. Here are two strategies for running it without too much hassle on Ubuntu.
 
-**Add an entry to Startup Applications:**
+### Add an entry to Startup Applications
 
 `/usr/local/bin/distractd --log /path/to/distractd.log`
 
-**Run it under Supervisord:**
+### Run it under Supervisord
 
 `pip install supervisor`
 
