@@ -22,12 +22,36 @@ This is especially helpful when running as a background process, or under the su
 
 ## HOW TO RUN ##
 `distractd` works best when it runs any time your machine is on. Here are two strategies for running it without too much hassle on Ubuntu.
-    
-**Add an entry to Startup Applications:**
+
+### Use a systemd unit file
+
+Any systemd unit file placed in `~/.config/systemd/user/` can be managed by with normal user privileges. For example:
+
+```
+$ cat ~/.config/systemd/user/distractd.service
+[Unit]
+Description=Distractinator Service Daemon
+
+[Service]
+ExecStart=/usr/bin/python %h/.local/bin/distractd
+
+[Install]
+WantedBy=default.target
+```
+
+Then to start:
+
+```
+systemctl --user start distractd.service
+```
+
+The above path to the `distractd` script in the `ExecStart` line assumes the package was installed with the `--user` flag. Update accordingly if you installed `distractinator` system-wide.
+
+### Add an entry to Startup Applications
 
 `/usr/local/bin/distractd --log /path/to/distractd.log`
 
-**Run it under Supervisord:**
+### Run it under Supervisord
 
 `pip install supervisor`
 
@@ -48,7 +72,7 @@ customevents.py
 ---------------
 You should use one!
 
-This repository comes with an example **customevents.py** file. Find its path on your system with: 
+This repository comes with an example **customevents.py** file. Find its path on your system with:
 
     distractd --example_custom_code
 
