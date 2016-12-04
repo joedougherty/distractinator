@@ -11,7 +11,7 @@
 
 `distractd`
 
-You will be walked through a few steps to ensure the script can communicate with your receiver. The setup process will also copy an example config file to your home directory.
+You will be walked through a few steps to ensure the script can communicate with your receiver. The setup process will also copy an example config file to your home directory, at `~/.distractinator.conf`.
 
 ### Specifying a logfile: ###
 By default, the log messages will print to stdout. You can specify a logfile location with the --log argument.
