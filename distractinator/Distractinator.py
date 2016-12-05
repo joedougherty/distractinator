@@ -161,7 +161,15 @@ class Distractinator:
                     device_not_found = False
             time.sleep(1)
 
-        return serial.Serial(p.device, 9600, timeout=10)
+        try:
+            return serial.Serial(p.device, 9600, timeout=10)
+        except serial.serialutil.SerialException as err:
+            if 'permission' in err.strerror.lower():
+                sys.stderr.write('Please check the permissions on {}.\n'.format(p.device))
+                sys.stderr.write('See README for details on resolving.\n')
+                sys.exit(2)
+            else:
+                raise err
 
     def get_alert_title(self):
         try:
