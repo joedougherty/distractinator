@@ -13,6 +13,15 @@
 
 You will be walked through a few steps to ensure the script can communicate with your receiver. The setup process will also copy an example config file to your home directory, at `~/.distractinator.conf`.
 
+### If You Encounter a Permissions Issue During setup###
+The default permissions on the device may not allow for reading and writing. If the setup process asks you to check the permissions on the device, try the following:
+
+
+    $ sudo usermod -aG dialout $USER
+    $ newgrp dialout
+
+After these commands have been run, call `distractd` once again.
+
 ### Specifying a logfile: ###
 By default, the log messages will print to stdout. You can specify a logfile location with the --log argument.
 
