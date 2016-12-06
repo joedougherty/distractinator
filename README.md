@@ -30,7 +30,7 @@ By default, the log messages will print to stdout. You can specify a logfile loc
 This is especially helpful when running as a background process, or under the supervision of a separate process.
 
 ## HOW TO RUN ##
-`distractd` works best when it runs any time your machine is on. Here are two strategies for running it without too much hassle on Ubuntu.
+`distractd` works best when it runs any time your machine is on. Here are a few strategies for running it without too much hassle on Ubuntu.
 
 ### Use a systemd unit file
 
