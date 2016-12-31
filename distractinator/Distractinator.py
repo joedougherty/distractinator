@@ -34,7 +34,7 @@ class Distractinator:
 
         # Set up logging!
         self.log = self.createlogger(args.log)
-        self.log.info('notifier started.')
+        self.log.info('distractd started.')
 
         # Find and parse the config file!
         if args.config:
@@ -73,7 +73,7 @@ class Distractinator:
     def config_file(self, print_err_msg=False):
         """ Look for config file in home directory.
             If found, return configparser object.
-            If found but no parseable, exit with code 2.
+            If found but not parseable, exit with code 2.
             If not found, note this in the log and run setup_config_file.
         """
         config_location = os.path.join(os.path.expanduser('~'), '.distractinator.conf')
