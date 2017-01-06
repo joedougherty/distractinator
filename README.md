@@ -3,12 +3,7 @@
 ## Installation ##
     pip install distractinator
 
-
-    git clone <this repo>
-    cd distractinator
-    python setup.py install
-
-**Note**: You may need to `sudo python setup.py install` as this will attempt to write to `/usr/local/bin/`
+**Note**: You may need to `sudo pip install` as this will attempt to write to `/usr/local/bin/`
 
 ## SETUP ##
 
