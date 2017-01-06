@@ -1,6 +1,9 @@
 # DISTRACTINATOR: The customizable, open source cubicle doorbell #
 
 ## Installation ##
+    pip install distractinator
+
+
     git clone <this repo>
     cd distractinator
     python setup.py install
