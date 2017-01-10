@@ -101,9 +101,13 @@ class Distractinator:
         hwid = get_hardware_id()
     
         # Write the hwid to the config file
-        config = configparser.ConfigParser()
-        config.add_section('hardware')
-        config.set('hardware', 'device_id', value=hwid)
+        try:
+            config = configparser.ConfigParser()
+            config.add_section('hardware')
+            config.set('hardware', 'device_id', value=hwid)
+        except:
+            self.log.error("Unable to create config file.")
+            raise Exception('Config file was not created')
         with open(desired_location, 'a') as configfile:
             config.write(configfile)
 
