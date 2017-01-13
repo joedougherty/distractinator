@@ -18,16 +18,7 @@ from .hardware import get_hardware_id, sanitize_hwid
 class Distractinator:
     def __init__(self):
         # Parse the command line options!
-        desc = "The Distractinator(TM) notifier!"
-        parser = argparse.ArgumentParser(description=desc)
-        parser.add_argument('--log', help='Absolute path to the desired log. (/path/to/file.log)', type=str, required=False)
-        parser.add_argument('--config', help='Setup your config file.', action="store_true", default=False)
-        parser.add_argument('--example_custom_code', 
-                            help='Prints the location of the example customevents.py file.', 
-                            action="store_true",
-                            default=False)
-        args = parser.parse_args()
-
+        args = self.parse_cmd_line_opts()
         if args.example_custom_code:
             self.example_custom_code()
             sys.exit(0)
@@ -55,6 +46,17 @@ class Distractinator:
         # Find and assign the correct port!
         self.p = self.autoconnect() # Won't you join me on the perennial quest?
         on_connect(usermodule=self.usermodule, log=self.log)
+
+    def parse_cmd_line_opts(self): 
+        desc = "The Distractinator(TM) notifier!"
+        parser = argparse.ArgumentParser(description=desc)
+        parser.add_argument('--log', help='Absolute path to the desired log. (/path/to/file.log)', type=str, required=False)
+        parser.add_argument('--config', help='Setup your config file.', action="store_true", default=False)
+        parser.add_argument('--example_custom_code', 
+                            help='Prints the location of the example customevents.py file.', 
+                            action="store_true",
+                            default=False)
+        return parser.parse_args()
 
     def createlogger(self, logfile_location=None):
         logger = logging.getLogger()
