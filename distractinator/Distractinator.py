@@ -144,9 +144,17 @@ class Distractinator:
             return importlib.import_module('customevents')
         return False
 
+    def get_hardware_id(self):
+        try:
+            return self.config_file().get('hardware', 'device_id')
+        except (configparser.NoOptionError, configparser.NoSectionError):
+            config_location = os.path.join(os.path.expanduser('~'), '.distractinator.conf')
+            self.log.error("Looks like your config file got messed up during setup. That's okay!")
+            self.log.error("You can fix this by removing the file ({}) and re-running distractd.".format(config_location))
+            sys.exit(2)
+
     def identify_board(self, p):
-        config_hwid = self.config_file().get('hardware', 'device_id')
-        if sanitize_hwid(p.hwid) == config_hwid:
+        if sanitize_hwid(p.hwid) == self.get_hardware_id():
             return True
         return False
 
