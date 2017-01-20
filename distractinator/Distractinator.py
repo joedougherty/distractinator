@@ -10,7 +10,7 @@ import shutil
 try:
     import ConfigParser as configparser
 except:
-    # Python 3  
+    # Python 3
     import configparser
 from .events import *
 from .hardware import get_hardware_id, sanitize_hwid
@@ -33,27 +33,27 @@ class Distractinator:
         else:
             self.config = self.config_file(print_err_msg=True)
             self.default_alert = self.use_default_alert()
-        
+
         # Find and import the custom actions file!
         try:
             # Let's go find your custom file
             self.usermodule = self.customcode()
         except IOError:
             # I could not find the file you specified :(
-            log.error("I could not find the custom actions file in the location you specified. :(")
-            sys.exit(2) 
+            self.log.error("I could not find the custom actions file in the location you specified. :(")
+            sys.exit(2)
 
         # Find and assign the correct port!
         self.p = self.autoconnect() # Won't you join me on the perennial quest?
         on_connect(usermodule=self.usermodule, log=self.log)
 
-    def parse_cmd_line_opts(self): 
+    def parse_cmd_line_opts(self):
         desc = "The Distractinator(TM) notifier!"
         parser = argparse.ArgumentParser(description=desc)
         parser.add_argument('--log', help='Absolute path to the desired log. (/path/to/file.log)', type=str, required=False)
         parser.add_argument('--config', help='Setup your config file.', action="store_true", default=False)
-        parser.add_argument('--example_custom_code', 
-                            help='Prints the location of the example customevents.py file.', 
+        parser.add_argument('--example_custom_code',
+                            help='Prints the location of the example customevents.py file.',
                             action="store_true",
                             default=False)
         return parser.parse_args()
@@ -101,7 +101,7 @@ class Distractinator:
         shutil.copy(config_file, desired_location)
 
         hwid = get_hardware_id()
-    
+
         # Write the hwid to the config file
         config = configparser.ConfigParser()
         config.add_section('hardware')
@@ -110,7 +110,7 @@ class Distractinator:
             config.write(configfile)
 
     def use_default_alert(self):
-        """ 
+        """
         Use the default alert unless the user specifies otherwise
         explicitly in the config file.
         """
@@ -130,7 +130,7 @@ class Distractinator:
                 path_to_custom_events = self.config_file().get('notifier', 'custom_script')
                 self.log.info('Looking for custom script file at {}...'.format(path_to_custom_events))
             except configparser.NoOptionError:
-                self.log.info('custom_script variable not set in config file.') 
+                self.log.info('custom_script variable not set in config file.')
                 return False
 
             if os.path.exists(path_to_custom_events):
@@ -140,7 +140,7 @@ class Distractinator:
                 raise IOError
 
             containing_dir = os.path.split(path_to_custom_events)[0]
-            sys.path.append(containing_dir) 
+            sys.path.append(containing_dir)
             return importlib.import_module('customevents')
         return False
 
@@ -192,7 +192,7 @@ class Distractinator:
             return self.config_file().get('notifier', 'alert_msg')
         except:
             return None
-    
+
     def alert(self, title=None, msg=None):
         if self.use_default_alert():
             if self.get_alert_title() is None:
