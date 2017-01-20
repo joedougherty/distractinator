@@ -121,7 +121,7 @@ class Distractinator:
 
     def example_custom_code(self):
         custom_events_file = pkg_resources.resource_filename(__name__, 'examples/customevents.py')
-        sys.stdout.write('Custom Events example file: {}\n'.format(custom_events_file))
+        sys.stdout.write(custom_events_file)
 
     def customcode(self):
         """ Import customevents.py using location specified in config file. """
