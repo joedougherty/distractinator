@@ -1,7 +1,16 @@
-const int buttonPinA = 12; // D12 on Flora Pinout 
-const int buttonPinB = 6;
-const int buttonPinC = 9;
-const int buttonPinD = 10;
+/*
+Mapping of M4 Receiver pins to transmitter buttons
+--------------------------------------------------
+D0: "D" button
+D1: "C" button
+D2: "B" button
+D3: "A" button
+*/
+
+const int buttonPinA = 12; // D12
+const int buttonPinB = 6;  // D6
+const int buttonPinC = 9;  // D9
+const int buttonPinD = 10; // D10
 
 int buttonStateA = 0;
 int lastButtonStateA = 0;
