@@ -38,31 +38,36 @@ Purchase the requisite hardware!
 
 Connect the Arduino pins to the M4 Receiver:
 
-	Power:
+**Power**:
 
-	* Arduino GND -> M4 GND
-	* Arduino 5V -> M4 5V
-	
-	Data:
+* Arduino GND -> M4 GND
+* Arduino 5V -> M4 5V
 
-	* Arduino Pin D12 -> M4 Pin D3 ("A" button)
-	* Arduino Pin D6  -> M4 Pin D2 ("B" button)
-	* Arduino Pin D9  -> M4 Pin D1 ("C" button)
-	* Arduino Pin D10 -> M4 Pin D0 ("D" button)
+**Data**:
+
+* Arduino Pin D12 -> M4 Pin D3 ("A" button)
+* Arduino Pin D6  -> M4 Pin D2 ("B" button)
+* Arduino Pin D9  -> M4 Pin D1 ("C" button)
+* Arduino Pin D10 -> M4 Pin D0 ("D" button)
 
 Solder or otherwise secure the connections.
 
-* Flash the microcontroller with the sketch:
-	* Connect the Arduino to your computer via USB
-	* Open the Arduino IDE and open the notify.ino sketch (in distractinator/examples)
-	* Select the correct board from **Tools > Board**
-	* Click **Upload**
+Flash the microcontroller with the sketch:
+
+* Connect the Arduino to your computer via USB
+* Open the Arduino IDE and open the notify.ino sketch (in distractinator/examples)
+* Select the correct board from **Tools > Board**
+* Click **Upload**
 
 Fit these two boards into your container.
 
 ## 3.) Configure the device ##
 
-Connect your newly-built Distractinator to your computer. Run `distractinator`. The installation wizard will guide you from there.
+Connect your newly-built Distractinator to your computer. 
+
+Run `distractinator`. 
+
+The installation wizard will guide you from there.
 
 Enjoy!
 
