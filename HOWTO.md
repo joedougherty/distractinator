@@ -28,7 +28,7 @@ Readying the Distractinator consists of 3 (three) main steps:
 
 ### Hardware ###
 
-Purchase the requisite hardware!
+Acquire the requisite hardware!
 
 ### Software (I assume you're running Linux) ###
 
