@@ -19,7 +19,9 @@
 Readying the Distractinator consists of 3 (three) main steps:
 	
 1.) Obtain the ingredients
+
 2.) Build the hardware
+
 3.) Configure the device
 
 ## 1.) Obtain the ingredients ##
