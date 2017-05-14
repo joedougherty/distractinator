@@ -67,7 +67,7 @@ Fit these two boards into your container.
 
 Connect your newly-built Distractinator to your computer. 
 
-Run `distractinator`. 
+Run `distractd`. 
 
 The installation wizard will guide you from there.
 
