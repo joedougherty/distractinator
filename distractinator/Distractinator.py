@@ -226,6 +226,9 @@ class Distractinator:
                 on_connect(usermodule=self.usermodule, log=self.log)
 
                 serialMsg = port.readline().strip()
+            except KeyboardInterrupt:
+                self.log.info('Goodbye!')
+                sys.exit(0)
 
             if serialMsg in ('a_recvd', b'a_recvd'): # A Button
                 self.log.info('Received {} from serial.'.format(serialMsg.strip()))
