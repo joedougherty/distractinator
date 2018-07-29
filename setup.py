@@ -5,7 +5,7 @@ except ImportError:
 
 setup(
         name="distractinator",
-        version='0.6',
+        version='0.7',
         description="For use with the Distractinator USB receiver.",
         author="Joe Dougherty",
         author_email="joseph.dougherty@gmail.com",
