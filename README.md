@@ -32,7 +32,7 @@ This is especially helpful when running as a background process, or under the su
 
 ### Use a systemd unit file
 
-Any systemd unit file placed in `~/.config/systemd/user/` can be managed by with normal user privileges. For example:
+Any systemd unit file placed in `~/.config/systemd/user/` can be managed with normal user privileges. For example:
 
 ```
 $ cat ~/.config/systemd/user/distractd.service
@@ -45,6 +45,13 @@ ExecStart=/usr/bin/python %h/.local/bin/distractd
 [Install]
 WantedBy=default.target
 ```
+
+Enable the service:
+
+```
+systemctl --user enable distractd.service
+```
+
 
 Then to start:
 
