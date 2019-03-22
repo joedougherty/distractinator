@@ -229,6 +229,9 @@ class Distractinator:
             except KeyboardInterrupt:
                 self.log.info('Goodbye!')
                 sys.exit(0)
+            except Exception as e:
+                self.log.error(e)
+                raise
 
             if serialMsg in ('a_recvd', b'a_recvd'): # A Button
                 self.log.info('Received {} from serial.'.format(serialMsg.strip()))
